@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { shopData } from 'src/app/interface/shopData.model';
-import { paymentData } from 'src/app/interface/paymentData.model';
+import { shopData } from 'src/app/interface/shopdata.model';
+import { paymentData } from 'src/app/interface/paymentdata.model';
 @Injectable({
   providedIn: 'root'
 })

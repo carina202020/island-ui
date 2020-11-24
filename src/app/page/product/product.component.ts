@@ -7,8 +7,8 @@ import { ConfigService } from './../../service/config/config.service';
 import { storeData } from './../../interface/storeinfo.model';
 import { productData } from './../../interface/productdata.model';
 import { productModalData } from './../../interface/productmodal.model';
-import { shopList } from './../../interface/shopList.model';
-import { shopData } from './../../interface/shopData.model';
+import { shopList } from './../../interface/shoplist.model';
+import { shopData } from './../../interface/shopdata.model';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { DataStoreService } from '../../service/data-store/data-store.service';
 @Component({

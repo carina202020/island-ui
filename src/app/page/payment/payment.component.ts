@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DataStoreService } from '../../service/data-store/data-store.service';
 import { ActivatedRoute, Router } from "@angular/router";
-import { paymentData } from 'src/app/interface/paymentData.model';
+import { paymentData } from 'src/app/interface/paymentdata.model';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
