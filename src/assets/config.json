@@ -1,0 +1,17 @@
+{
+    "store": 
+        {
+            "A001": {
+                "storeInfo": {
+                    "name": "島輝豆花親親店"
+                },
+                "apiInfo": {
+                    "host": "https://area17-win.pospal.cn:443",
+                    "appID": "F74B63E1F64F7D161EE2CD666666F27F",
+                    "appKey": "1120749499853035880"
+                }
+           
+            }
+        }
+    
+}

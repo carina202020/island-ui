@@ -1,0 +1,80 @@
+<div class="inner-content">
+  <div class="list">
+    <nz-list nzGrid [nzLoading]="loading">
+      <nz-list-item *ngFor="let item of ProductList" (click)="showModal(item)">
+        <div nz-col nzSpan="8">
+          <img style="height:auto;max-width:100%;padding-right:10px" alt="logo" src= {{item.imgUrl}} />
+        </div>
+        <div nz-col nzSpan="16">
+          <nz-list-item-meta>
+
+            <nz-list-item-meta-title>
+              {{ item.name }}
+            </nz-list-item-meta-title>
+            <nz-list-item-meta-description>
+
+            </nz-list-item-meta-description>
+          </nz-list-item-meta>
+        </div>
+      </nz-list-item>
+    </nz-list>
+  </div>
+  <div class="footer">
+    <div nz-row>
+      <div nz-col nzSpan="18"> 訂單小計 $ {{shopData.subTotal}}</div>
+      <div nz-col nzSpan="6" style="  text-align: right">
+        <button nz-button nzType="primary" nzShape="round" (click)=goPayment()>
+          <i nz-icon nzType="dollar" nzTheme="outline"></i>結帳</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div style="position:absolute; right:30pt;z-index:100">
+  <nz-affix [nzOffsetBottom]="80">
+    <nz-badge [nzCount]=shopData.shopCount>
+      <button nz-button nzType="default" nzShape="circle" (click)="showShopCar()">
+        <i nz-icon nzType="shopping-cart" nzTheme="outline"></i>
+      </button>
+    </nz-badge>
+  </nz-affix>
+</div>
+<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" [nzFooter]=null>
+
+  <img style="height:auto;max-width:100%;padding-right:10px" alt="logo" src="{{modalData.imgUrl}}" />
+  <div> {{modalData.name}}</div>
+  <div>
+    <nz-radio-group [(ngModel)]="modalData.selectItem" nzButtonStyle="solid">
+      <label *ngFor="let ele of modalData.itemList" nz-radio-button nzValue="{{ele.key}}">{{ele.size}} ${{ele.price}}</label>
+    </nz-radio-group>
+  </div>
+  <div>
+    <div nzGrid>
+      <div nz-row nzJustify="center">
+        <div nz-col style="text-align: center;" nzSpan="6">
+
+          <button nz-button nzType="default" nzShape="circle" [disabled]="quantity==1||modalData.selectItem==''" (click)="updateQ('minus')">
+            <i nz-icon nzType="minus" nzTheme="outline"></i>
+          </button>
+        </div>
+        <div nz-col style="text-align: center;" nzSpan="10">
+          <input nz-input placeholder="Basic usage" [(ngModel)]="quantity" />
+        </div>
+        <div nz-col style="text-align: center;" nzSpan="6">
+          <button nz-button nzType="default" nzShape="circle" (click)="updateQ('plus')" [disabled]="modalData.selectItem==''">
+            <i nz-icon nzType="plus" nzTheme="outline"></i>
+          </button>
+        </div>
+        <!-- 加入購物車 -->
+        <div>
+          <button nz-button nzType="primary" (click)="addToShopCar(modalData)">加入購物車</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</nz-modal>
+<nz-modal [(nzVisible)]="shopCarisVisible" (nzOnCancel)=" shopCarCancel()" [nzFooter]=null> 
+  <div class="title">購物車</div>
+  <app-order-detail [detailshow]=true ></app-order-detail>
+</nz-modal>

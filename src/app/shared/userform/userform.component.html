@@ -1,0 +1,36 @@
+<div class="title">填寫訂購資訊</div>
+<form nz-form [nzLayout]="'vertical'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+
+    <nz-form-item>
+
+        <nz-radio-group nzButtonStyle="solid" formControlName="service">
+            <label nz-radio-button nzValue="self">自取</label>
+            <label nz-radio-button nzValue="delivery">外送</label>
+        </nz-radio-group>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your username!">
+            <nz-input-group>
+                <label>*訂購人:</label>
+                <input formControlName="userName" nz-input placeholder="Username" />
+            </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your username!">
+            <nz-input-group>
+                <label>*訂購電話:</label>
+                <input formControlName="phone" nz-input placeholder="phone" />
+            </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your username!">
+            <nz-input-group>
+                <label>備註:</label>
+                <textarea formControlName="comment" nz-input rows="2" placeholder="write any thing"></textarea>
+            </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+</form>

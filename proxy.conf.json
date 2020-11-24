@@ -1,0 +1,12 @@
+{
+  "/pospal-api2": {
+    "target": "https://area17-win.pospal.cn",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/api": {
+    "target": "http://localhost:8000",
+    "logLevel": "debug"
+  }
+}

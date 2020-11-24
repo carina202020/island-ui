@@ -1,0 +1,83 @@
+<div class=row>
+    <div nz-row>
+        <div nz-col nzSpan="12" nzOffset="6" style="text-align: center;">
+            <button nz-button nzType="default" (click)="showdetail();"> 商品明細
+                <i nz-icon nzType="caret-down" *ngIf="!detailshow" nzTheme="outline"></i>
+                <i nz-icon nzType="caret-up" *ngIf="detailshow" nzTheme="outline"></i>
+            </button>
+        </div>
+    </div>
+
+</div>
+<div class=row>
+    <app-order-detail [detailshow]=detailshow></app-order-detail>
+</div>
+<div>
+
+    <form nz-form [nzLayout]="'vertical'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <div class="title">取餐時間</div>
+        <nz-form-item>
+            <div nz-row>
+                <div nz-col nzSpan="10">
+                    <nz-date-picker [nzDisabledDate]="disabledDate" formControlName="date" (ngModelChange)="formOnchange()"></nz-date-picker>
+                </div>
+                <div nz-col nzSpan="6">
+                    <nz-select [(ngModel)]="date.hour" formControlName="hour">
+                        <nz-option *ngFor="let item of dateOption.hour" [nzValue]="item" [nzLabel]="item"></nz-option>
+                    </nz-select>
+                </div>
+                <div nz-col nzSpan="6">
+                    <nz-select formControlName="minutes" [(ngModel)]="date.minutes" (ngModelChange)="formOnchange()" [nzDisabled]="!validateForm.controls.hour.valid">
+                        <nz-option *ngFor="let item of dateOption.minutes" [nzValue]="item" [nzLabel]="item"></nz-option>
+                    </nz-select>
+                </div>
+            </div>
+            <div class='red-color padding-5'>取餐時間 {{validateForm.controls.date.value}} : {{date.hour}} : {{date.minutes}}</div>
+        </nz-form-item>
+        <div class="title">填寫訂購資訊</div>
+        <nz-form-item>
+            <nz-radio-group nzButtonStyle="solid" formControlName="service" (ngModelChange)="formOnchange()">
+                <label nz-radio-button nzValue="self">自取</label>
+                <label nz-radio-button nzValue="delivery">外送</label>
+            </nz-radio-group>
+        </nz-form-item>
+        <nz-form-item *ngIf="validateForm.controls.service.value=='delivery'">
+            <input nz-input placeholder="請輸入外送地址" formControlName="address" />
+        </nz-form-item>
+
+
+        <nz-form-item>
+            <nz-form-label nzRequired>訂購電話:</nz-form-label>
+            <nz-form-control nzErrorTip="Please input your username!">
+                <nz-input-group>
+                    <input formControlName="userName" nz-input placeholder="Username" (keyup)="formOnchange()" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label nzRequired>訂購電話:</nz-form-label>
+            <nz-form-control nzErrorTip="Please input your username!">
+                <!-- <nz-input-group>
+                    <label>*訂購電話:</label>
+                    <input formControlName="phone" nz-input placeholder="phone" (keyup)="formOnchange()" />
+                </nz-input-group> -->
+                <nz-input-group nzSearch [nzAddOnAfter]="suffixButton">
+                    <!-- <label>*訂購電話:</label> -->
+                    <input type="text" nz-input placeholder="input search text" />
+                </nz-input-group>
+                <ng-template #suffixButton>
+                    <button nz-button nzType="primary" (click)="getMessage()" nzSearch>驗證</button>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Please input your username!">
+                <nz-input-group>
+                    <label>備註:</label>
+                    <textarea formControlName="comment" nz-input rows="2" placeholder="write any thing"></textarea>
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</div>
+<button nz-button nzType="primary" (click)="vMessage()">Primary Button</button>

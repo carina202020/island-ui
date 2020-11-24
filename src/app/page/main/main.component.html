@@ -1,0 +1,4 @@
+<div class="inner-content">
+    <app-payment *ngIf="view=='payment'" (changeView)="_changeView($event)"></app-payment>
+    <app-product *ngIf="view=='product'" (changeView)="_changeView($event)"></app-product>
+</div>
